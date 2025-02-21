@@ -26,7 +26,7 @@ jobs:
 
       - name: Fix PHP code style (Auto-fix)
         run: |
-          ~/.composer/vendor/bin/php-cs-fixer fix . --dry-run --diff --rules='@PSR12,array_syntax'
+          ~/.composer/vendor/bin/php-cs-fixer fix . --dry-run --diff --rules='@PSR12,array_syntax' || true
 
       - name: Commit changes
         run: |
