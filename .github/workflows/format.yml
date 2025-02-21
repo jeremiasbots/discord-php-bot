@@ -24,8 +24,9 @@ jobs:
       - name: Install PHP-CS-Fixer
         run: composer global require friendsofphp/php-cs-fixer
 
-      - name: Fix PHP code style
-        run: ~/.composer/vendor/bin/php-cs-fixer fix
+      - name: Fix PHP code style (Auto-fix)
+        run: |
+          ~/.composer/vendor/bin/php-cs-fixer fix . --dry-run --diff --rules='@PSR12,array_syntax'
 
       - name: Commit changes
         run: |
