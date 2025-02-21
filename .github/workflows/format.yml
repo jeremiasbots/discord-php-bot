@@ -1,0 +1,36 @@
+name: PHP Code Formatting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+
+      - name: Install dependencies
+        run: composer install --no-dev --prefer-dist
+
+      - name: Install PHP-CS-Fixer
+        run: composer global require friendsofphp/php-cs-fixer
+
+      - name: Fix PHP code style
+        run: ~/.composer/vendor/bin/php-cs-fixer fix
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Apply PHP-CS-Fixer rules"
+          git push origin main

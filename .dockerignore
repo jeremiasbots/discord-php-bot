@@ -1,0 +1,16 @@
+vendor/
+logs/
+cache/
+var/
+*.log
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.git
+.gitignore
+.idea/
+.vscode/
+.dockerignore
+Dockerfile
+docker-compose.yaml
